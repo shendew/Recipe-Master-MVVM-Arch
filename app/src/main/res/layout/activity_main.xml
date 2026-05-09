@@ -5,35 +5,139 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:padding="10dp">
+    tools:context=".ui.MainActivity"
+    style="@style/ScreenBackground"
+    >
 
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="15dp"
+        android:elevation="5dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            style="@style/TextMain"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/app_toolbar_desc"
+            android:textAlignment="center"
+            android:textSize="11sp"
+            style="@style/TextSub"
+            />
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/inputLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:cardCornerRadius="12dp"
+        style="@style/ScreenForegroundCard"
+        app:contentPadding="15dp"
+        android:layout_marginHorizontal="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="10dp">
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/ingridField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"
+                    style="@style/TextMain"
+                    android:hint="@string/recipe_input_hint"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recipe_add_text"
+                style="@style/ButtonMain"/>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ingRecView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/ing_item"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/generateBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:text="@string/get_recipe"
+                style="@style/ButtonMain"
+                />
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/responseConrainer"
-        android:layout_width="match_parent"
+        android:id="@+id/responseContainer"
+        style="@style/ScreenForeground"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="TextView"
+        android:layout_marginHorizontal="10dp"
+        android:padding="5dp"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingridField" />
+        app:layout_constraintTop_toBottomOf="@+id/inputLay" />
 
-    <EditText
-        android:id="@+id/ingridField"
-        android:layout_width="0dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ytBtn"
+        style="@style/ButtonMain"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        app:layout_constraintEnd_toStartOf="@+id/button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
+        android:layout_margin="20dp"
+        android:src="@drawable/youtube_svgrepo_com"
+        android:text="@string/yt_link"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
     <ProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
+        style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,11 +145,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="s"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

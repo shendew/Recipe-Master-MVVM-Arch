@@ -39,6 +39,7 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.firebase.ai)
+    implementation(libs.cardview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -48,4 +49,8 @@ dependencies {
     // Required for ListenableFuture and Futures
     implementation("com.google.guava:guava:33.6.0-android")
     implementation("io.noties.markwon:core:4.6.2")
+
+    testImplementation("com.google.truth:truth:1.4.5")
+    androidTestImplementation("com.google.truth:truth:1.4.5")
+
 }

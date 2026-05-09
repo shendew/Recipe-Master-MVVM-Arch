@@ -11,6 +11,9 @@ import com.google.firebase.ai.type.Content;
 import com.google.firebase.ai.type.GenerateContentResponse;
 import com.google.firebase.ai.type.GenerativeBackend;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -19,12 +22,12 @@ public class RecipeRepository {
     GenerativeModelFutures model;
     public void getRecipe(String ingredients,RecipeCallback callback){
 
-//        String formattedIngredients = String.join(", ", ingredients);
-
         String finalPrompt = String.format(
-                "Act as a professional chef. Create a recipe using these ingredients: %s. " +
-                        "You may assume I have basic pantry staples like oil, salt, and pepper. " +
-                        "Provide a concise recipe.",
+                "Act as a professional Masterchef. Generate a recipe for: %s. " +
+                        "Return the result ONLY as a JSON object with keys: " +
+                        "'mdData' (use stylish Markdown and emojis), 'youtubeLink' (search URL), " +
+                        "and 'tags' (array). If the input is not related to food or is nonsense, " +
+                        "respond ONLY with: 'Please try again later with proper manner'.",
                 ingredients
         );
 
@@ -38,8 +41,13 @@ public class RecipeRepository {
         Futures.addCallback(response, new FutureCallback<GenerateContentResponse>() {
             @Override
             public void onSuccess(GenerateContentResponse result) {
-                String recipe = result.getText();
-                callback.onResponseRecived(recipe);
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(result.getText());
+                    callback.onResponseRecived(jsonObject);
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
             @Override
@@ -50,7 +58,7 @@ public class RecipeRepository {
     }
 
     public interface RecipeCallback{
-        void onResponseRecived(String recipe);
+        void onResponseRecived(JSONObject recipe);
         void onErrorOccured();
     }
 }
