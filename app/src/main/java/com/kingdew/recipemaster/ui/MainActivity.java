@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     RecipeViewModel rViewModel;
     Button add;
     FloatingActionButton ytBtn;
-    RelativeLayout generateBtn;
+    RelativeLayout generateBtn,emptuContainer;
     EditText editField;
     TextView textView,aiLoadingText;
     ProgressBar progressBar;
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         ingRecView=findViewById(R.id.ingRecView);
         aiLoadingView=findViewById(R.id.aiLoadingView);
         aiLoadingText=findViewById(R.id.aiLoadingText);
-
+        emptuContainer=findViewById(R.id.emptuContainer);
         ingredientList=new ArrayList<>();
         ingRecView.setHasFixedSize(true);
         ingRecView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
@@ -112,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                     String tags = jsonObject.getString("tags");
                     markwon.setMarkdown(textView,markdownContent);
+                    emptuContainer.setVisibility(View.INVISIBLE);
+                    textView.setVisibility(View.VISIBLE);
                 } catch (JSONException e) {
                     markwon.setMarkdown(textView,"# Lets see what we got!");
                 }

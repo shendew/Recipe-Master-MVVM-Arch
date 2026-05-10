@@ -26,7 +26,7 @@ public class RecipeRepository {
                 "Act as a professional Masterchef. Generate a recipe for: %s. " +
                         "Return the result ONLY as a JSON object with keys: " +
                         "'mdData' (use stylish Markdown and emojis), 'youtubeLink' (search URL), " +
-                        "and 'tags' (array). If the input is not related to food or is nonsense, " +
+                        "and 'tags' (array). avoid things like as a master chef or something on mdData.If the input is not related to food or is nonsense, " +
                         "respond ONLY with: 'Please try again later with proper manner'.",
                 ingredients
         );
