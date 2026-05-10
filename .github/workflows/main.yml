@@ -19,7 +19,7 @@ jobs:
 
       - name: Inject Firebase Config
         run: |
-          echo "${{FIREBASE_CONFIG_ENC}}" | base64 --decode > app/google-service.json
+          echo "${{secrets.FIREBASE_CONFIG_ENC}}" | base64 --decode > app/google-service.json
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
