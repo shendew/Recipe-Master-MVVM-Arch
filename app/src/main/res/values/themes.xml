@@ -8,7 +8,7 @@
 
     <style name="Theme.RecipeMaster" parent="Base.Theme.RecipeMaster" />
     <style name="ScreenBackground">
-        <item name="android:background">#F2F2F2</item>
+        <item name="android:background">#FFFFFF</item>
     </style>
     <style name="ScreenForeground">
         <item name="android:background">@color/white</item>

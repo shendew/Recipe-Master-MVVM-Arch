@@ -3,7 +3,11 @@ package com.kingdew.recipemaster.ui;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -26,7 +30,6 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kingdew.recipemaster.R;
 import com.kingdew.recipemaster.viewmodel.RecipeViewModel;
-import com.lottiefiles.dotlottie.core.widget.DotLottieAnimation;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -115,6 +118,35 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        editField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT || actionId == EditorInfo.IME_ACTION_GO){
+                    String input = editField.getText().toString().trim();
+                    addIng(input);
+                    return true;
+                }
+                return false;
+            }
+        });
+        editField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().trim().contains(",")){
+                    String input = s.toString().replace(",","").trim();
+                    addIng(input);
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
         ytBtn.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_VIEW, android.net.Uri.parse(ytLink));
             startActivity(intent);
@@ -122,11 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
         add.setOnClickListener(v->{
             String input = editField.getText().toString().trim();
-            if (!input.isEmpty()) {
-                rViewModel.addIngredient(input);
-            } else {
-                editField.setError("Please enter some ingredients");
-            }
+            addIng(input);
         });
 
         generateBtn.setOnClickListener(v -> {
@@ -137,5 +165,12 @@ public class MainActivity extends AppCompatActivity {
                 rViewModel.generateRecipe(ingredients);
             }
         });
+    }
+    private void addIng(String ing){
+        if (!ing.isEmpty()) {
+            rViewModel.addIngredient(ing);
+        } else {
+            editField.setError("Please enter some ingredients");
+        }
     }
 }
