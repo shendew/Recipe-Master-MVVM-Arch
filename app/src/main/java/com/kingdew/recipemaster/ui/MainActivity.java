@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,9 +22,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kingdew.recipemaster.R;
 import com.kingdew.recipemaster.viewmodel.RecipeViewModel;
+import com.lottiefiles.dotlottie.core.widget.DotLottieAnimation;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,13 +39,14 @@ public class MainActivity extends AppCompatActivity {
     RecipeViewModel rViewModel;
     Button add;
     FloatingActionButton ytBtn;
-    AppCompatButton generateBtn;
+    RelativeLayout generateBtn;
     EditText editField;
-    TextView textView;
+    TextView textView,aiLoadingText;
     ProgressBar progressBar;
     Markwon markwon;
     RecyclerView ingRecView;
     ArrayList<String> ingredientList;
+    LottieAnimationView aiLoadingView;
     private String ytLink;
 
     @Override
@@ -63,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         progressBar=findViewById(R.id.progressBar);
         markwon=Markwon.create(this);
         ingRecView=findViewById(R.id.ingRecView);
+        aiLoadingView=findViewById(R.id.aiLoadingView);
+        aiLoadingText=findViewById(R.id.aiLoadingText);
 
         ingredientList=new ArrayList<>();
         ingRecView.setHasFixedSize(true);
@@ -84,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
         rViewModel.getProgress().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer visibility) {
+                generateBtn.setBackgroundColor(getColor(visibility==View.VISIBLE? R.color.grey:R.color.base_color));
+                aiLoadingText.setVisibility(visibility==View.VISIBLE?View.GONE:View.VISIBLE);
+                aiLoadingView.setVisibility(visibility);
                 progressBar.setVisibility(visibility);
             }
         });
@@ -122,7 +131,11 @@ public class MainActivity extends AppCompatActivity {
 
         generateBtn.setOnClickListener(v -> {
             String ingredients = rViewModel.getIngredientsForAI();
-            rViewModel.generateRecipe(ingredients);
+            if (ingredients.isEmpty()) {
+                Toast.makeText(this, "Please enter ingredients", Toast.LENGTH_SHORT).show();
+            }else {
+                rViewModel.generateRecipe(ingredients);
+            }
         });
     }
 }

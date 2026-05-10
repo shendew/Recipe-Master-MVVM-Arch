@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">What\'s in your kitchen ?</string>
+    <string name="app_name">Recipe Master</string>
+    <string name="app_title">What\'s in your kitchen ?</string>
     <string name="app_toolbar_desc">Cook with what you have.</string>
     <string name="recipe_input_hint">Ingredients</string>
     <string name="yt_link">Watch in Youtube</string>

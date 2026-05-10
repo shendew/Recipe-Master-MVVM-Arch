@@ -42,4 +42,7 @@
         <item name="indicatorColor">#B83C11</item>
         <item name="android:progressDrawable">@style/Widget.MaterialComponents.CircularProgressIndicator</item>
     </style>
+    <style name="FloatingMain">
+        <item name="backgroundTint">#F44336</item>
+    </style>
 </resources>

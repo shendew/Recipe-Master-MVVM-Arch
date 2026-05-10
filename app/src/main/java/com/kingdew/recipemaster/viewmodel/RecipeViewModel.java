@@ -24,7 +24,7 @@ public class RecipeViewModel extends ViewModel {
     RecipeRepository rRepository;
     public RecipeViewModel(){
         rRepository=new RecipeRepository();
-        mProgress.postValue(View.INVISIBLE);
+        mProgress.postValue(View.GONE);
         mAiResponse.postValue(new JSONObject());
         mIngredients.postValue(new ArrayList<>());
     }
@@ -61,7 +61,7 @@ public class RecipeViewModel extends ViewModel {
             }
             @Override
             public void onErrorOccured() {
-                mProgress.postValue(View.INVISIBLE);
+                mProgress.postValue(View.GONE);
             }
         });
     }

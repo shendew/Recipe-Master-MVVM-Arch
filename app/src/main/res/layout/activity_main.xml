@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/app_name"
+            android:text="@string/app_title"
             android:textAlignment="center"
             android:textSize="26sp"
             android:textStyle="bold"
@@ -98,15 +98,40 @@
             tools:listitem="@layout/ing_item"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-            <androidx.appcompat.widget.AppCompatButton
+
+
+            <RelativeLayout
                 android:id="@+id/generateBtn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAllCaps="false"
-                android:text="@string/get_recipe"
-                style="@style/ButtonMain"
-                />
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="#FF5722"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
 
+                >
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/aiLoadingView"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:lottie_rawRes="@raw/ai_loading"
+                    app:lottie_speed="0.5"
+                    app:lottie_loop="true"
+                    app:lottie_autoPlay="true"
+                    android:visibility="gone"
+                    />
+
+                <TextView
+                    android:id="@+id/aiLoadingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Get Recipe"
+                    android:textStyle="bold"
+                    style="@style/ButtonMain"
+                    android:visibility="visible"
+                    />
+
+            </RelativeLayout>
         </LinearLayout>
 
 
@@ -127,7 +152,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/ytBtn"
-        style="@style/ButtonMain"
+        style="@style/FloatingMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"

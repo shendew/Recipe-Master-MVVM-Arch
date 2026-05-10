@@ -30,6 +30,19 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+
+    // Specifically for 16 KB support
+    bundle {
+        abi {
+            enableSplit = true
+        }
+    }
 }
 
 dependencies {
@@ -52,5 +65,8 @@ dependencies {
 
     testImplementation("com.google.truth:truth:1.4.5")
     androidTestImplementation("com.google.truth:truth:1.4.5")
+
+    implementation("com.airbnb.android:lottie:6.7.1")
+
 
 }
