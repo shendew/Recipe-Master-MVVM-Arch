@@ -8,7 +8,7 @@
 
     <style name="Theme.RecipeMaster" parent="Base.Theme.RecipeMaster" />
     <style name="ScreenBackground">
-        <item name="android:background">#FFFFFF</item>
+        <item name="android:background">#F0F0F0</item>
     </style>
     <style name="ScreenForeground">
         <item name="android:background">@color/white</item>
@@ -34,6 +34,10 @@
     </style>
     <style name="ButtonMain">
         <item name="android:backgroundTint">#B83C11</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="CustomButtonMain">
+        <item name="cardBackgroundColor">#B83C11</item>
         <item name="android:textColor">@color/white</item>
     </style>
     <style name="ProgressMain" parent="Widget.AppCompat.ProgressBar">

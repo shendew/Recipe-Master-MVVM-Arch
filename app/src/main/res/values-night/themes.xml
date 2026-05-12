@@ -7,43 +7,43 @@
 
     </style>
 
-<!--    <style name="ScreenBackground">-->
-<!--        &lt;!&ndash; Deep dark gray instead of light gray &ndash;&gt;-->
-<!--        <item name="android:background">#0D0D0D</item>-->
-<!--    </style>-->
+    <style name="ScreenBackground">
+        <!-- Deep dark gray instead of light gray -->
+        <item name="android:background">#0D0D0D</item>
+    </style>
 <!--    <style name="ToolBar">-->
 <!--        &lt;!&ndash; Slightly lighter gray to create "surface" elevation &ndash;&gt;-->
 <!--        <item name="android:background">#B83C11</item>-->
 <!--        <item name="android:textColor">#FFFFFF</item>-->
 <!--    </style>-->
 
-<!--    <style name="ScreenForeground">-->
-<!--        &lt;!&ndash; Slightly lighter gray to create "surface" elevation &ndash;&gt;-->
-<!--        <item name="android:background">#1E1E1E</item>-->
-<!--&lt;!&ndash;        <item name="android:textColor">#FFFFFF</item>&ndash;&gt;-->
-<!--    </style>-->
-<!--    <style name="ScreenForegroundCard">-->
-<!--        &lt;!&ndash; Slightly lighter gray to create "surface" elevation &ndash;&gt;-->
-<!--        <item name="cardBackgroundColor">#1E1E1E</item>-->
+    <style name="ScreenForeground">
+        <!-- Slightly lighter gray to create "surface" elevation -->
+        <item name="android:background">#1C1C26</item>
 <!--        <item name="android:textColor">#FFFFFF</item>-->
-<!--    </style>-->
+    </style>
+    <style name="ScreenForegroundCard">
+        <!-- Slightly lighter gray to create "surface" elevation -->
+        <item name="cardBackgroundColor">#1C1C26</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
 
-<!--    <style name="TextMain">-->
-<!--        &lt;!&ndash; High emphasis white &ndash;&gt;-->
-<!--        <item name="android:textColor">#E1E1E1</item>-->
-<!--    </style>-->
+    <style name="TextMain">
+        <!-- High emphasis white -->
+        <item name="android:textColor">#E1E1E1</item>
+    </style>
 
-<!--    <style name="TextSub">-->
-<!--        &lt;!&ndash; Medium emphasis gray &ndash;&gt;-->
-<!--        <item name="android:textColor">#A0A0A0</item>-->
-<!--    </style>-->
+    <style name="TextSub">
+        <!-- Medium emphasis gray -->
+        <item name="android:textColor">#A0A0A0</item>
+    </style>
 
-<!--    <style name="ButtonMain">-->
-<!--        &lt;!&ndash; Keep the brand orange, but consider a slightly-->
-<!--             brighter version if it looks too dull on dark &ndash;&gt;-->
-<!--        <item name="android:backgroundTint">#B83C11</item>-->
-<!--        <item name="android:textColor">@color/white</item>-->
-<!--    </style>-->
+    <style name="ButtonMain">
+        <!-- Keep the brand orange, but consider a slightly
+             brighter version if it looks too dull on dark -->
+        <item name="android:backgroundTint">#B83C11</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 
 <!--    <style name="ProgressMain" parent="Widget.MaterialComponents.CircularProgressIndicator">-->
 <!--        <item name="android:indeterminate">true</item>-->

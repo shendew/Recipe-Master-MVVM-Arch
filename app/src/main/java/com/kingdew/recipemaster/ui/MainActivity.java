@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -40,7 +42,7 @@ import io.noties.markwon.Markwon;
 
 public class MainActivity extends AppCompatActivity {
     RecipeViewModel rViewModel;
-    Button add;
+    Button add,reTryButton;
     FloatingActionButton ytBtn;
     RelativeLayout generateBtn,emptuContainer;
     EditText editField;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView ingRecView;
     ArrayList<String> ingredientList;
     LottieAnimationView aiLoadingView;
+    LinearLayout inputInsideLay;
     private String ytLink;
 
     @Override
@@ -73,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         aiLoadingView=findViewById(R.id.aiLoadingView);
         aiLoadingText=findViewById(R.id.aiLoadingText);
         emptuContainer=findViewById(R.id.emptuContainer);
+        inputInsideLay=findViewById(R.id.inputInsideLay);
+        reTryButton=findViewById(R.id.reTryButton);
         ingredientList=new ArrayList<>();
         ingRecView.setHasFixedSize(true);
         ingRecView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
@@ -105,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     String markdownContent = jsonObject.getString("mdData");
                     ytLink = jsonObject.getString("youtubeLink");
+                    inputInsideLay.setVisibility(View.GONE);
+                    reTryButton.setVisibility(View.VISIBLE);
                     if (ytLink == null || ytLink.isEmpty()) {
                         ytBtn.setVisibility(View.GONE);
                     } else {
@@ -166,6 +173,13 @@ public class MainActivity extends AppCompatActivity {
             }else {
                 rViewModel.generateRecipe(ingredients);
             }
+        });
+        reTryButton.setOnClickListener(v -> {
+            inputInsideLay.setVisibility(View.VISIBLE);
+            reTryButton.setVisibility(View.GONE);
+            ytBtn.setVisibility(View.GONE);
+            textView.setVisibility(View.GONE);
+            emptuContainer.setVisibility(View.VISIBLE);
         });
     }
     private void addIng(String ing){
